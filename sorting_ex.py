@@ -34,21 +34,34 @@ Subsetting based on text data
 dogs[dogs["date_of_birth"] < "2015-01-01"]
 Subsetting based on dates
 
+is_lab = dogs["breed"] == "Labrador"
+is_brown = dogs["color"] == "Brown"
+dogs[is_lab & is_brown]
+or:
+dogs[ (dogs["breed"] == "Labrador")  &(dogs["color"] == "Brown") ]
+Subsetting based on multiple conditions
+
+is_black_or_brown = dogs["color"].isin(["Black", "Brown"])
+dogs[is_black_or_brown]
+Subsetting using .isin()
 
 
 
 
+# Sort homelessness by 'individuals'
+homelessness_fam = homelessness.sort_values("family_members", ascending=False)
+print(homelessness_fam.head())
+
+homelessness_reg_fam = homelessness.sort_values(["region", "family_members"], ascending=[True, False])
+
+# Print the top few rows
+print(homelessness_reg_fam.head())
 
 
-
-
-
-
-
-
-
-
-
+fam_lt_1k_pac = homelessness[(homelessness["family_members"] < 1000) & (homelessness["region"] == 'Pacific')]
+# homelessness[homelessness["individuals"] > 1000]
+# See the result
+print(fam_lt_1k_pac)
 
 print(homelessness.)
 """
